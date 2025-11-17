@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "carryonextend",
+  "version": "${version}",
+  "name": "CarryOnExtend",
+  "description": "Throw out the entity or blocks you are holding",
+  "authors": [
+    "LirxOwO"
+  ],
+  "contact": {
+    "homepage": ""
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/carryonextend/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.lirxowo.carryonextend.fabric.CarryonextendFabric"
+    ],
+    "client": [
+      "com.lirxowo.carryonextend.fabric.client.CarryonextendFabricClient"
+    ]
+  },
+  "mixins": [
+    "carryonextend.mixins.json",
+    "carryonextend.fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "architectury": ">=13.0.8",
+    "fabric-api": "*",
+    "carryon": "*"
+  }
+}

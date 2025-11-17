@@ -1,0 +1,104 @@
+package com.lirxowo.carryonextend.fabric.network;
+
+import com.lirxowo.carryonextend.Carryonextend;
+import com.lirxowo.carryonextend.handler.BlockThrowHandler;
+import com.lirxowo.carryonextend.handler.EntityThrowHandler;
+import com.lirxowo.carryonextend.network.NetworkHandler;
+import com.lirxowo.carryonextend.network.PlayerThrowPacket;
+import com.lirxowo.carryonextend.network.ThrowBlockPacket;
+import com.lirxowo.carryonextend.network.ThrowEntityPacket;
+import com.lirxowo.carryonextend.network.ThrowPowerPacket;
+import dev.architectury.networking.NetworkManager;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
+
+public class FabricNetworkHandler {
+
+    public static void registerServerReceivers() {
+        NetworkManager.registerReceiver(
+                NetworkManager.Side.C2S,
+                ThrowEntityPacket.TYPE,
+                ThrowEntityPacket.CODEC,
+                (packet, context) -> {
+                    Player player = context.getPlayer();
+                    if (player instanceof ServerPlayer serverPlayer) {
+                        context.queue(() -> {
+                            EntityThrowHandler.throwCarriedEntity(serverPlayer);
+                        });
+                    }
+                }
+        );
+
+        NetworkManager.registerReceiver(
+                NetworkManager.Side.C2S,
+                ThrowBlockPacket.TYPE,
+                ThrowBlockPacket.CODEC,
+                (packet, context) -> {
+                    Player player = context.getPlayer();
+                    if (player instanceof ServerPlayer serverPlayer) {
+                        context.queue(() -> {
+                            BlockThrowHandler.throwCarriedBlock(serverPlayer);
+                        });
+                    }
+                }
+        );
+
+        NetworkManager.registerReceiver(
+                NetworkManager.Side.C2S,
+                ThrowPowerPacket.TYPE,
+                ThrowPowerPacket.CODEC,
+                (packet, context) -> {
+                    Player player = context.getPlayer();
+                    if (player instanceof ServerPlayer serverPlayer) {
+                        context.queue(() -> {
+                            if (packet.isEntity()) {
+                                EntityThrowHandler.throwCarriedEntityWithPower(serverPlayer, packet.power());
+                            } else {
+                                BlockThrowHandler.throwCarriedBlockWithPower(serverPlayer, packet.power());
+                            }
+                        });
+                    }
+                }
+        );
+
+        Carryonextend.LOGGER.info("Fabric server-side network packets registered");
+    }
+
+    public static void registerClientReceivers() {
+        NetworkManager.registerReceiver(
+                NetworkManager.Side.S2C,
+                PlayerThrowPacket.TYPE,
+                PlayerThrowPacket.CODEC,
+                (packet, context) -> {
+                    Player player = context.getPlayer();
+                    if (player != null) {
+                        context.queue(() -> {
+                            handlePlayerThrowPacket(packet, player);
+                        });
+                    }
+                }
+        );
+
+        Carryonextend.LOGGER.info("Fabric client-side network packets registered");
+    }
+
+    private static void handlePlayerThrowPacket(PlayerThrowPacket packet, Player player) {
+        if (player == null) {
+            return;
+        }
+
+        player.setDeltaMovement(packet.x(), packet.y(), packet.z());
+        player.hurtMarked = true;
+        player.setOnGround(false);
+
+        Vec3 currentMotion = player.getDeltaMovement();
+        player.setDeltaMovement(currentMotion.x, currentMotion.y + 0.1, currentMotion.z);
+
+        player.fallDistance = 0.0f;
+
+        Carryonextend.LOGGER.debug("Applied throw velocity to player: ({}, {}, {})",
+                packet.x(), packet.y(), packet.z());
+    }
+}

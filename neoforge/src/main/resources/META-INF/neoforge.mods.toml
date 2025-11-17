@@ -1,0 +1,45 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "GNU GPL 3.0"
+
+[[mods]]
+modId = "carryonextend"
+version = "${version}"
+displayName = "CarryOnExtend"
+authors = "LirxOwO"
+description = '''
+Throw out the entity or blocks you are holding
+'''
+#logoFile = ""
+
+[[dependencies.carryonextend]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.carryonextend]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.carryonextend]]
+modId = "architectury"
+type = "required"
+versionRange = "[13.0.8,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.carryonextend]]
+modId = "carryon"
+type = "required"
+versionRange = "[2.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "carryonextend.mixins.json"
