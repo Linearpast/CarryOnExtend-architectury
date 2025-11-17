@@ -1,6 +1,5 @@
 package com.lirxowo.carryonextend.neoforge.network;
 
-import com.lirxowo.carryonextend.Carryonextend;
 import com.lirxowo.carryonextend.handler.BlockThrowHandler;
 import com.lirxowo.carryonextend.handler.EntityThrowHandler;
 import com.lirxowo.carryonextend.network.PlayerThrowPacket;
@@ -61,8 +60,6 @@ public class NeoForgeNetworkHandler {
                     }
                 }
         );
-
-        Carryonextend.LOGGER.info("NeoForge server-side network packets registered");
     }
 
     public static void registerClientReceivers() {
@@ -80,8 +77,6 @@ public class NeoForgeNetworkHandler {
                     }
                 }
         );
-
-        Carryonextend.LOGGER.info("NeoForge client-side network packets registered");
     }
 
     private static void handlePlayerThrowPacket(PlayerThrowPacket packet, Player player) {
@@ -97,8 +92,5 @@ public class NeoForgeNetworkHandler {
         player.setDeltaMovement(currentMotion.x, currentMotion.y + 0.1, currentMotion.z);
 
         player.fallDistance = 0.0f;
-
-        Carryonextend.LOGGER.debug("Applied throw velocity to player: ({}, {}, {})",
-                packet.x(), packet.y(), packet.z());
     }
 }

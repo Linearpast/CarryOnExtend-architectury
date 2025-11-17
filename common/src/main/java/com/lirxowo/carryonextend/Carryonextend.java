@@ -10,11 +10,7 @@ public final class Carryonextend {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static void init() {
-        LOGGER.info("CarryOnExtend initializing...");
-
         EntityRegistry.init();
         NetworkHandler.init();
-
-        LOGGER.info("CarryOnExtend initialized!");
     }
 }

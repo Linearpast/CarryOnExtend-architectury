@@ -1,6 +1,5 @@
 package com.lirxowo.carryonextend.fabric.network;
 
-import com.lirxowo.carryonextend.Carryonextend;
 import com.lirxowo.carryonextend.handler.BlockThrowHandler;
 import com.lirxowo.carryonextend.handler.EntityThrowHandler;
 import com.lirxowo.carryonextend.network.NetworkHandler;
@@ -62,8 +61,6 @@ public class FabricNetworkHandler {
                     }
                 }
         );
-
-        Carryonextend.LOGGER.info("Fabric server-side network packets registered");
     }
 
     public static void registerClientReceivers() {
@@ -80,8 +77,6 @@ public class FabricNetworkHandler {
                     }
                 }
         );
-
-        Carryonextend.LOGGER.info("Fabric client-side network packets registered");
     }
 
     private static void handlePlayerThrowPacket(PlayerThrowPacket packet, Player player) {
@@ -97,8 +92,5 @@ public class FabricNetworkHandler {
         player.setDeltaMovement(currentMotion.x, currentMotion.y + 0.1, currentMotion.z);
 
         player.fallDistance = 0.0f;
-
-        Carryonextend.LOGGER.debug("Applied throw velocity to player: ({}, {}, {})",
-                packet.x(), packet.y(), packet.z());
     }
 }

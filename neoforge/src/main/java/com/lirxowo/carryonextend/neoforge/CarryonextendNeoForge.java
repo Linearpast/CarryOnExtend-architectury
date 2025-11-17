@@ -34,8 +34,6 @@ public final class CarryonextendNeoForge {
     }
 
     private void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-
-        Carryonextend.LOGGER.info("Registering entity renderer for CUSTOM_FALLING_BLOCK via NeoForge event");
         event.registerEntityRenderer(EntityRegistry.CUSTOM_FALLING_BLOCK.get(), CustomFallingBlockRenderer::new);
     }
 }
