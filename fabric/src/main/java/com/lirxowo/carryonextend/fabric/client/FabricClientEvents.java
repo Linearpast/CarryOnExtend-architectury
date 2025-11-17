@@ -31,11 +31,11 @@ public class FabricClientEvents {
             CarryOnData carry = CarryOnDataManager.getCarryData(player);
 
             if (carry.isCarrying(CarryOnData.CarryType.ENTITY) ||
-                carry.isCarrying(CarryOnData.CarryType.PLAYER) ||
-                carry.isCarrying(CarryOnData.CarryType.BLOCK)) {
+                    carry.isCarrying(CarryOnData.CarryType.PLAYER) ||
+                    carry.isCarrying(CarryOnData.CarryType.BLOCK)) {
 
                 boolean isEntity = carry.isCarrying(CarryOnData.CarryType.ENTITY) ||
-                                 carry.isCarrying(CarryOnData.CarryType.PLAYER);
+                        carry.isCarrying(CarryOnData.CarryType.PLAYER);
 
                 float power = PowerThrowHandler.getPowerFactor();
 
