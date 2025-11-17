@@ -7,9 +7,6 @@ import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 public class ClientSetup {
 
     public static void init() {
-        try {
             EntityRendererRegistry.register(EntityRegistry.CUSTOM_FALLING_BLOCK, CustomFallingBlockRenderer::new);
-        } catch (Exception e) {
-        }
     }
 }
