@@ -1,0 +1,28 @@
+{
+  "parent": "carryonextend:tnt_thrower",
+  "criteria": {
+    "throw_player": {
+      "trigger": "carryonextend:player_throw"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.carryonextend.player_throw.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:diamond"
+    },
+    "title": {
+      "translate": "advancement.carryonextend.player_throw.title"
+    }
+  },
+  "requirements": [
+    [
+      "throw_player"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

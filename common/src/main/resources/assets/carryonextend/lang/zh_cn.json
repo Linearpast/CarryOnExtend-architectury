@@ -5,5 +5,7 @@
   "advancement.carryonextend.tnt_thrower.title": "TNT投掷者",
   "advancement.carryonextend.tnt_thrower.description": "投掷一个点燃的TNT",
   "advancement.carryonextend.self_destruction.title": "玉面手雷王",
-  "advancement.carryonextend.self_destruction.description": "被自己投掷的TNT炸死"
+  "advancement.carryonextend.self_destruction.description": "被自己投掷的TNT炸死",
+  "advancement.carryonextend.player_throw.title": "装X我让你飞起来",
+  "advancement.carryonextend.player_throw.description": "投掷一个玩家"
 }

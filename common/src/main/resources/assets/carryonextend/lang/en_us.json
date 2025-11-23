@@ -5,5 +5,7 @@
   "advancement.carryonextend.tnt_thrower.title": "TNT Thrower",
   "advancement.carryonextend.tnt_thrower.description": "Throw a lit TNT",
   "advancement.carryonextend.self_destruction.title": "Self-Destruction",
-  "advancement.carryonextend.self_destruction.description": "Get killed by a TNT you threw"
+  "advancement.carryonextend.self_destruction.description": "Get killed by a TNT you threw",
+  "advancement.carryonextend.player_throw.title": "Airborne Flight",
+  "advancement.carryonextend.player_throw.description": "Throw a player"
 }

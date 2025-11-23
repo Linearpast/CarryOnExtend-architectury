@@ -16,6 +16,9 @@ public class TriggerRegistry {
     public static final RegistrySupplier<SelfDestructionTrigger> SELF_DESTRUCTION =
         TRIGGER_TYPES.register("self_destruction", SelfDestructionTrigger::new);
 
+    public static final RegistrySupplier<PlayerThrowTrigger> PLAYER_THROW =
+        TRIGGER_TYPES.register("player_throw", PlayerThrowTrigger::new);
+
     public static void init() {
         TRIGGER_TYPES.register();
     }

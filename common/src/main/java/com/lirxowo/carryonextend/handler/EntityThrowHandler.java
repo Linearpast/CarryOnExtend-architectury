@@ -84,6 +84,8 @@ public class EntityThrowHandler {
 
                 passenger.teleportTo(playerPos.x, playerPos.y, playerPos.z);
 
+                TriggerRegistry.PLAYER_THROW.get().trigger(player);
+
                 //TickTask 不知道为什么并不生效，故用此替代
                 ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
                 service.schedule(() -> {

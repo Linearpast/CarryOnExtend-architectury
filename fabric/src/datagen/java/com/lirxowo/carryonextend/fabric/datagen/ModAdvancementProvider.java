@@ -1,6 +1,7 @@
 package com.lirxowo.carryonextend.fabric.datagen;
 
 import com.lirxowo.carryonextend.CarryOnExtend;
+import com.lirxowo.carryonextend.trigger.PlayerThrowTrigger;
 import com.lirxowo.carryonextend.trigger.SelfDestructionTrigger;
 import com.lirxowo.carryonextend.trigger.TntThrowTrigger;
 import net.minecraft.advancements.Advancement;
@@ -48,6 +49,17 @@ public class ModAdvancementProvider extends AdvancementProvider {
                             true, true, true)
                     .addCriterion("self_destruction", SelfDestructionTrigger.TriggerInstance.selfDestruction())
                     .save(writer, CarryOnExtend.MOD_ID + ":self_destruction");
+
+            AdvancementHolder playerThrowAdvancement = Advancement.Builder.advancement()
+                    .parent(tntThrowerAdvancement)
+                    .display(Items.DIAMOND,
+                            Component.translatable("advancement.carryonextend.player_throw.title"),
+                            Component.translatable("advancement.carryonextend.player_throw.description"),
+                            null,
+                            AdvancementType.CHALLENGE,
+                            true, true, true)
+                    .addCriterion("throw_player", PlayerThrowTrigger.TriggerInstance.playerThrow())
+                    .save(writer, CarryOnExtend.MOD_ID + ":player_throw");
         }
     }
 }
